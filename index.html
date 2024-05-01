@@ -68,7 +68,7 @@
         for (let i = 0; i < imageList.length; i += 2) {
           const highres = imageList[i];
           const lowres = imageList[i + 1];
-          const imgElement = `<img loading="lazy" srcset="./Media/${lowres} 250w, ./Media/${highres} 1280w" sizes="(max-width: 1280px) 250px, 1280px" src="./Media/${lowres}" />`;
+          const imgElement = `<img loading="lazy" srcset="./Media/${lowres} low, ./Media/${highres}" sizes="(max-width: 1280px) 250px, 1280px" src="./Media/${lowres}" />`;
           zoomwallDiv.insertAdjacentHTML("beforeend", imgElement);
         }
 
