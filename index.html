@@ -66,14 +66,12 @@
       <!-- Images will be loaded here -->
     </div>
 
-   
-
     <script type="module">
       import * as zoomwall from "./zoomwall.js";
 
       async function loadImages() {
-        const response = await fetch("./imageList.json");
-        const imageList = await response.json();
+        // const response = await fetch("./imageList.json");
+        const imageList = ['Image1.jpg','Image2.jpg','Image3.jpg','Image4.jpg','Image5.jpg','Image6.jpg','Image7.jpg','Image8.jpg']
         const zoomwallDiv = document.getElementById("zoomwall");
 
         for (let i = 0; i < imageList.length; i += 2) {
