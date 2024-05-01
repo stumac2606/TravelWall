@@ -1,50 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Zoomwall</title>
-  <link rel="stylesheet" type="text/css" href="zoomwall.css" />
-  <!-- Add the link to the favicon.ico file here -->
-  <link rel="icon" type="image/x-icon">
-</head>
-<body>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0, width=device-width,>"
+    />
+    <title>textinputvault</title>
+    <link rel="stylesheet" type="text/css" href="./zoomwall.css" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: black;
+      }
+      header {
+        padding: 1em;
+        background-color: #333;
+        text-align: center;
+      }
+      a:link,
+      a:visited {
+        text-decoration: none;
+        font-family: sans-serif;
+        color: white;
+      }
+      a:hover {
+        color: #ddd;
+      }
+      #author {
+        float: left;
+      }
+      #repo {
+        float: right;
+      }
+      #title {
+        display: inline-block;
+        font-weight: bold;
+      }
+      footer {
+        padding: 1em;
+        background-color: #333; /* Ensure contrast against the body's black background */
+        color: white; /* Ensures text is visible */
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a id="author" href="http://textinputvault.github.io">textinputvault</a
+      ><a
+        id="repo"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSckl-HZIULEDK4t7FpD6W0cUuPNE38dtZh6qPuwZZONCUF8tA/viewform?usp=sf_link"
+        >Add your technique</a
+      ><a id="title" href="https://github.com/textinputvault"
+        >A keyboard for XR to augment the human</a
+      >
+    </header>
 
-  <div id="gallery" class="zoomwall">
-    <!-- Your image elements here -->
-    <img src="Images/Image1.jpg" data-highres="Images/Image1.jpg" alt="Image 1" />
-<!-- Update paths for other images similarly -->/>
-    <img src="Image2.jpg" data-highres="Image2.jpg" alt="Image 2" />
-    <img src="Image3.jpg" data-highres="Image3.jpg" alt="Image 3" />
-    <img src="Image4.jpg" data-highres="Image4.jpg" alt="Image 4" />
-    <img src="Image5.jpg" data-highres="Image5.jpg" alt="Image 5" />
-    <img src="Image6.jpg" data-highres="Image6.jpg" alt="Image 6" />
-    <img src="Image7.jpg" data-highres="Image7.jpg" alt="Image 7" />
-    <img src="Image8.jpg" data-highres="Image8.jpg" alt="Image 8" />
-  
-    <!-- Additional image elements -->
-  </div>
+    <div id="zoomwall" class="zoomwall">
+      <!-- Images will be loaded here -->
+    </div>
 
-<!-- <script type="module" src="zoomwall.js"></script>
-<script>
-  // Call zoomwall.create after the zoomwall.js script is loaded
-  zoomwall.create(document.getElementById("gallery"));
-  
-</script> -->
+    <script type="module">
+      import * as zoomwall from "./zoomwall.js";
 
-<script type="module">
-  // Wait for the DOMContentLoaded event
-  document.addEventListener("DOMContentLoaded", function() {
-    // Call zoomwall.create after the zoomwall.js script is loaded
-    import('./zoomwall.js').then(module => {
-      const zoomwall = module.default; // Assuming zoomwall.js exports as default
-      zoomwall.create(document.getElementById("gallery"));
-    }).catch(error => {
-      // console.error('Error loading zoomwall.js:', error);
-    });
-  });
-</script>
+      async function loadImages() {
+        const response = await fetch("./imageList.json");
+        const imageList = await response.json();
+        const zoomwallDiv = document.getElementById("zoomwall");
 
+        for (let i = 0; i < imageList.length; i += 2) {
+          const highres = imageList[i];
+          const lowres = imageList[i + 1];
+          const imgElement = `<img loading="lazy" srcset="./media/${lowres} 250w, ./media/${highres} 1280w" sizes="(max-width: 1280px) 250px, 1280px" src="./media/${lowres}" />`;
+          zoomwallDiv.insertAdjacentHTML("beforeend", imgElement);
+        }
 
-</body>
+            // Adding a delay of 2 seconds before initializing the zoomwall gallery
+    setTimeout(() => {
+        zoomwall.create(document.getElementById("zoomwall"), true);
+    }, 3500); // 3.5 seconds delay
+
+        // zoomwall.create(document.getElementById("zoomwall"), true);
+      }
+
+      // Modified page reloading logic with delay initially used "setInterval" but then changed to "setTimeout"
+      if (!window.location.search.includes("r=1")) {
+    setTimeout(function () {
+        window.location.href = window.location.pathname + "?r=1";
+          }, 100); // Ensure this is a one-time redirect
+      } else {
+                window.onload = loadImages; // Always initialize loading images
+      }
+    </script>
+  </body>
 </html>

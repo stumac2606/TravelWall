@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Zoomwall</title>
+  <link rel="stylesheet" type="text/css" href="zoomwall.css" />
+  <!-- Add the link to the favicon.ico file here -->
+  <link rel="icon" type="image/x-icon">
+</head>
+<body>
+
+  <div id="gallery" class="zoomwall">
+    <!-- Your image elements here -->
+    <img src="Images/Image1.jpg" data-highres="Images/Image1.jpg" alt="Image 1" />
+<!-- Update paths for other images similarly -->/>
+    <img src="Image2.jpg" data-highres="Image2.jpg" alt="Image 2" />
+    <img src="Image3.jpg" data-highres="Image3.jpg" alt="Image 3" />
+    <img src="Image4.jpg" data-highres="Image4.jpg" alt="Image 4" />
+    <img src="Image5.jpg" data-highres="Image5.jpg" alt="Image 5" />
+    <img src="Image6.jpg" data-highres="Image6.jpg" alt="Image 6" />
+    <img src="Image7.jpg" data-highres="Image7.jpg" alt="Image 7" />
+    <img src="Image8.jpg" data-highres="Image8.jpg" alt="Image 8" />
+  
+    <!-- Additional image elements -->
+  </div>
+
+<!-- <script type="module" src="zoomwall.js"></script>
+<script>
+  // Call zoomwall.create after the zoomwall.js script is loaded
+  zoomwall.create(document.getElementById("gallery"));
+  
+</script> -->
+
+<script type="module">
+  // Wait for the DOMContentLoaded event
+  document.addEventListener("DOMContentLoaded", function() {
+    // Call zoomwall.create after the zoomwall.js script is loaded
+    import('./zoomwall.js').then(module => {
+      const zoomwall = module.default; // Assuming zoomwall.js exports as default
+      zoomwall.create(document.getElementById("gallery"));
+    }).catch(error => {
+      // console.error('Error loading zoomwall.js:', error);
+    });
+  });
+</script>
+
+
+</body>
+</html>
