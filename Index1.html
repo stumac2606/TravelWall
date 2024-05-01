@@ -1,0 +1,106 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0, width=device-width"
+    />
+    <title>textinputvault</title>
+    <link rel="stylesheet" type="text/css" href="./zoomwall.css" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: black;
+      }
+      header {
+        padding: 1em;
+        background-color: #333;
+        text-align: center;
+      }
+      a:link,
+      a:visited {
+        text-decoration: none;
+        font-family: sans-serif;
+        color: white;
+      }
+      a:hover {
+        color: #ddd;
+      }
+      #author {
+        float: left;
+      }
+      #repo {
+        float: right;
+      }
+      #title {
+        display: inline-block;
+        font-weight: bold;
+      }
+      footer {
+        padding: 1em;
+        background-color: #333; /* Ensure contrast against the body's black background */
+        color: white; /* Ensures text is visible */
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="zoomwall" class="zoomwall">
+      <!-- Images will be loaded here -->
+    </div>
+
+    <script type="module">
+        import * as zoomwall from "./zoomwall.js";
+      
+        async function loadImages() {
+          // Define the directory path
+          const directoryPath = "C:/Users/stuar/OneDrive/Documents/GitHub/TravelWall/node_modules/zoomwall.js/Gallery/";
+      
+          // Array of image file names
+          const imageFiles = [
+            "C:\Users\stuar\OneDrive\Documents\GitHub\TravelWall\node_modules\zoomwall.js\Gallery\Image1.jpg",
+            "Image2.jpg",
+            "Image3.jpg",
+            "Image4.jpg",
+            "Image5.jpg",
+            "Image6.jpg",
+            "Image7.jpg",
+            "Image8.jpg",
+            // Add more image file names as needed
+          ];
+      
+          // Get the zoomwall container element
+          const zoomwallDiv = document.getElementById("zoomwall");
+      
+          // Iterate over each image file
+          for (let i = 0; i < imageFiles.length; i++) {
+            const imageFileName = imageFiles[i];
+            const imagePath = directoryPath + imageFileName;
+            const imgElement = `<img loading="lazy" src="${imagePath}" />`;
+            zoomwallDiv.insertAdjacentHTML("beforeend", imgElement);
+          }
+      
+          // Initialize the zoomwall gallery after a delay
+          setTimeout(() => {
+            zoomwall.create(zoomwallDiv, true);
+          }, 3500); // 3.5 seconds delay
+        }
+      
+        // Modified page reloading logic with delay initially used "setInterval" but then changed to "setTimeout"
+        if (!window.location.search.includes("r=1")) {
+          setTimeout(function () {
+            window.location.href = window.location.pathname + "?r=1";
+          }, 100); // Ensure this is a one-time redirect
+        } else {
+          window.onload = loadImages; // Always initialize loading images
+        }
+      </script>
+      </body>
+      </html> -->
