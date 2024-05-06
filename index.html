@@ -136,7 +136,7 @@
       import * as zoomwall from "./zoomwall.js";
 
       async function loadImages() {
-        const response = await fetch("./media/");
+        const response = await fetch("./Media/");
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
