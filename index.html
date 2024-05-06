@@ -61,7 +61,7 @@
       <!-- Images will be loaded here -->
     </div>
 
-    <!-- <script type="module">
+    <script type="module">
       import * as zoomwall from "./zoomwall.js";
 
       async function loadImages() {
@@ -96,37 +96,9 @@
       } else {
                 window.onload = loadImages; // Always initialize loading images
       }
-    </script> -->
-
-
-    <script type="module">
-      import * as zoomwall from "./zoomwall.js";
-
-      async function loadImages() {
-        const response = await fetch("./Media/");
-        const html = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const imageElements = doc.querySelectorAll('a[href$=".jpg"], a[href$=".png"], a[href$=".jpeg"], a[href$=".gif"]');
-
-        const zoomwallDiv = document.getElementById("zoomwall");
-
-        imageElements.forEach(imageElement => {
-          const imageUrl = imageElement.getAttribute('href');
-          const imgElement = `<img loading="lazy" src="./media/${imageUrl}" />`;
-          zoomwallDiv.insertAdjacentHTML("beforeend", imgElement);
-        });
-
-        // Initialize zoomwall gallery after images are loaded
-        zoomwall.create(document.getElementById("zoomwall"), true);
-      }
-
-      window.onload = loadImages;
     </script>
 
-
-
-
+ <!-- works locally -->
     <!-- <script type="module">
       import * as zoomwall from "./zoomwall.js";
 
@@ -150,6 +122,10 @@
       }
 
       window.onload = loadImages;
-    </script> -->
-  </body>
+    </script>
+ -->
+
+
+
+      </body>
 </html>
