@@ -61,7 +61,7 @@
       <!-- Images will be loaded here -->
     </div>
 
-    <!-- <script type="module">
+    <script type="module">
       import * as zoomwall from "./zoomwall.js";
 
       async function loadImages() {
@@ -96,8 +96,43 @@
       } else {
                 window.onload = loadImages; // Always initialize loading images
       }
-    </script> -->
-    <script type="module">
+    </script>
+
+
+    <!-- <script type="module">
+      import * as zoomwall from "./zoomwall.js";
+  
+      async function loadImages() {
+          const response = await fetch("./imageList.json");
+          const imageList = await response.json();
+          const zoomwallDiv = document.getElementById("zoomwall");
+  
+          for (let i = 0; i < imageList.length; i += 1) {
+              const highres = imageList[i];
+              const imgElement = `<img loading="lazy" srcset="./Media/${highres}, ./Media/${highres}" sizes="(max-width: 1280px) 250px, 1280px" src="./Media/${highres}" />`;
+              zoomwallDiv.insertAdjacentHTML("beforeend", imgElement);
+          }
+  
+          // Initialize zoomwall gallery after images are loaded
+          zoomwall.create(document.getElementById("zoomwall"), true);
+      }
+  
+      // Modified page reloading logic with delay initially used "setInterval" but then changed to "setTimeout"
+      if (!window.location.search.includes("r=1")) {
+          setTimeout(function () {
+              window.location.href = window.location.pathname + "?r=1";
+          }, 100); // Ensure this is a one-time redirect
+      } else {
+          window.onload = loadImages; // Always initialize loading images
+      }
+  </script>
+  
+ -->
+
+
+
+
+    <!-- <script type="module">
       import * as zoomwall from "./zoomwall.js";
 
       async function loadImages() {
@@ -120,6 +155,6 @@
       }
 
       window.onload = loadImages;
-    </script>
+    </script> -->
   </body>
 </html>
