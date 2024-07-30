@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videography</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #eaeaea;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 1.5em;
+            background-color: #222;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        .back-button {
+            background-color: #444;
+            color: #f0f0f0;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin-right: auto; /* Pushes the title to the center */
+        }
+
+        .back-button:hover {
+            background-color: #555;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #f0f0f0;
+            flex-grow: 1; /* Makes the title take up available space */
+            text-align: center;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px; /* Adjust as needed */
+            width: 100%;
+        }
+
+        .video-wrapper {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .video-wrapper::before {
+            content: "";
+            display: block;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            width: 100%;
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+            z-index: 1;
+        }
+
+        .video-wrapper:hover video {
+            transform: scale(1.05);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px;
+            height: 64px;
+            background: url('play-button.png') no-repeat center center;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .video-title {
+            font-size: 1em;
+            text-align: center;
+            color: #f0f0f0;
+            background-color: #444;
+            border-radius: 5px;
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 2;
+            margin-top: 10px;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox video {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .vertical video {
+            max-width: auto;
+            max-height: 80%;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5em;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        footer {
+            padding: 1em;
+            background-color: #222;
+            color: white;
+            text-align: center;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-button">Back</a>
+        <h1>Videography</h1>
+    </header>
+
+    <div class="video-container">
+        <div class="video-grid">
+            <!-- Video thumbnails will be loaded here -->
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close-lightbox" id="close-lightbox">&times;</span>
+        <video controls id="lightbox-video"></video>
+    </div>
+
+    <footer>
+        &copy; 2024 Stu Macgregor Videography
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const videoList = [
+                { src: 'Tigne.mp4', title: 'Tigne' },
+                { src: 'Val Thorens.mp4', title: 'Val Thorens' },
+                { src: 'Lakes motorbike.mp4', title: 'Hike and Bike the lakes' } // Add your video files and titles here
+            ];
+
+            const videoGrid = document.querySelector(".video-grid");
+            const lightbox = document.getElementById("lightbox");
+            const lightboxVideo = document.getElementById("lightbox-video");
+            const closeLightbox = document.getElementById("close-lightbox");
+
+            videoList.forEach(video => {
+                const videoWrapper = document.createElement("div");
+                videoWrapper.classList.add("video-wrapper");
+
+                const videoElement = document.createElement("video");
+                videoElement.setAttribute("src", `./Media/${video.src}`);
+                videoElement.setAttribute("preload", "metadata");
+
+                const playButton = document.createElement("div");
+                playButton.classList.add("play-button");
+
+                const videoTitle = document.createElement("div");
+                videoTitle.classList.add("video-title");
+                videoTitle.textContent = video.title;
+
+                videoElement.addEventListener('loadedmetadata', () => {
+                    videoElement.controls = false;
+                    videoWrapper.appendChild(videoElement);
+                    videoWrapper.appendChild(playButton);
+                    videoWrapper.appendChild(videoTitle);
+                    videoGrid.appendChild(videoWrapper);
+
+                    // Check aspect ratio and add a class if it's vertical
+                    if (videoElement.videoHeight > videoElement.videoWidth) {
+                        videoElement.classList.add("vertical");
+                    }
+                });
+
+                videoWrapper.addEventListener('click', () => {
+                    lightboxVideo.src = `./Media/${video.src}`;
+                    lightbox.classList.add("active");
+                    lightboxVideo.play();
+                });
+            });
+
+            closeLightbox.addEventListener('click', () => {
+                lightbox.classList.remove("active");
+                lightboxVideo.pause();
+                lightboxVideo.src = "";
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target === closeLightbox) {
+                    lightbox.classList.remove("active");
+                    lightboxVideo.pause();
+                    lightboxVideo.src = "";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

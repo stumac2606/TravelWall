@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+  <title>SouthAmericaTravel - Photos</title>
+  <link rel="stylesheet" type="text/css" href="./zoomwall.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: black;
+    }
+    header {
+      padding: 1em;
+      background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    a:link, a:visited {
+      text-decoration: none;
+      font-family: sans-serif;
+      color: white;
+    }
+    a:hover {
+      color: #ddd;
+    }
+    .back-button {
+      position: absolute;
+      left: 1em;
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+      text-decoration: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .back-button:hover {
+      background-color: #555;
+    }
+    #title {
+      font-size: larger;
+      color: white;
+      text-align: center;
+      flex-grow: 1;
+    }
+    footer {
+      padding: 1em;
+      background-color: #333; /* Ensure contrast against the body's black background */
+      color: white; /* Ensures text is visible */
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="back-button">Back</a>
+    <div id="title">South America Travel Photos</div>
+  </header>
+
+  <div id="zoomwall" class="zoomwall">
+    <!-- Images will be loaded here -->
+  </div>
+
+  <script type="module">
+    import * as zoomwall from "./zoomwall.js";
+
+    async function loadImages() {
+      const imageList = [
+        'Image1.jpg', 'Image2.jpg', 'Image3.jpg', 'Image4.jpg', 'Image5.jpg', 'Image6.jpg',
+        'Image7.jpg', 'Image8.jpg', 'Image9.jpg', 'Image10.jpg', 'Image11.jpg', '20240104_115337.jpg',
+        'VideoCapture_20240513-112549.jpg', '20240513121223_IMG_0617.JPG', '20240512181514_IMG_0604.JPG',
+        '20240511210930_IMG_0576.JPG', 'IMG-20240410-WA0000.jpg', '20240513215448_IMG_0686.JPG',
+        '20240513210707_IMG_0667.JPG', 'IMG-20240514-WA0015.jpg', '20240518141116_IMG_0889.JPG',
+        '20240518141706_IMG_0899.JPG', '20240518160851_IMG_0914.JPG', 'PXL_20240516_155634095.MP_exported_333.jpg',
+        'PXL_20240518_171454867.jpg', 'PXL_20240506_001024010.MP.jpg', 'PXL_20240506_235426548.MP.jpg',
+        'PXL_20240511_044632757.jpg', 'PXL_20240514_012752814.MP~2.jpg', 'PXL_20240516_153419113.MP.jpg'
+      ];
+
+      const zoomwallDiv = document.getElementById("zoomwall");
+
+      for (let i = 0; i < imageList.length; i++) {
+        const imgElement = `<img loading="lazy" src="./Media/${imageList[i]}" />`;
+        zoomwallDiv.insertAdjacentHTML("beforeend", imgElement);
+      }
+
+      setTimeout(() => {
+        zoomwall.create(document.getElementById("zoomwall"), true);
+      }, 3500);
+    }
+
+    window.onload = loadImages;
+  </script>
+
+  <footer>
+    &copy; 2024 South America Travel
+  </footer>
+</body>
+</html>
