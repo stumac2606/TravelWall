@@ -75,30 +75,90 @@
 
     async function loadImages() {
       const imageList = [
-        'image12.jpg', 'image13.jpg', 'image14.jpg', 'image15.jpg', 'image16.jpg', 'image17.jpg',
-        'image18.jpg', 'image19.jpg', 'image20.jpg', 'image21.jpg', 'image22.jpg', 'image23.jpg',
-        'image24.jpg', 'image25.jpg', 'image26.jpg', 'image27.jpg', 'image28.jpg', 'image29.jpg',
-        'image30.jpg', 'image32.jpg', 'image33.jpg', 'image34.jpg', 'image35.jpg',
-        'image36.jpg', 'image37.jpg', 'image38.jpg', 'image39.jpg', 'image40.jpg', 'image41.jpg',
-        'image42.jpg', 'image43.jpg', 'image44.jpg', 'image45.jpg', 'image46.jpg', 'image47.jpg',
-        'image48.jpg', 'image49.jpg', 'image50.jpg', 'image51.jpg', 'image52.jpg', 'image53.jpg',
-        'image54.jpg', 'image55.jpg', 'image56.jpg', 'image57.jpg', 'image58.jpg', 'image59.jpg',
-        'image63.jpg', 'image64.jpg', 'image65.jpg', 'image66.jpg', 'image67.jpg',
-        'image61.png', 'Image1.jpg', 'Image2.jpg', 'Image3.jpg', 'Image4.jpg', 'Image5.jpg', 'Image6.jpg',
-        'Image7.jpg', 'Image8.jpg', 'Image9.jpg', 'Image10.jpg', 'Image11.jpg', '20240104_115337.jpg',
-        'VideoCapture_20240513-112549.jpg', '20240513121223_IMG_0617.JPG',
-        '20240511210930_IMG_0576.JPG', 'IMG-20240410-WA0000.jpg', '20240513215448_IMG_0686.JPG',
-        '20240513210707_IMG_0667.JPG', 'IMG-20240514-WA0015.jpg', '20240518141116_IMG_0889.JPG',
-        '20240518141706_IMG_0899.JPG', '20240518160851_IMG_0914.JPG', 'PXL_20240516_155634095.MP_exported_333.jpg',
-        'PXL_20240518_171454867.jpg', 'PXL_20240506_001024010.MP.jpg',
-        'PXL_20240511_044632757.jpg'
-        
-      ];
+    { low: 'image12_low.jpg', high: 'image12.jpg' },
+    { low: 'image13_low.jpg', high: 'image13.jpg' },
+    { low: 'image14_low.jpg', high: 'image14.jpg' },
+    { low: 'image15_low.jpg', high: 'image15.jpg' },
+    { low: 'image16_low.jpg', high: 'image16.jpg' },
+    { low: 'image17_low.jpg', high: 'image17.jpg' },
+    { low: 'image18_low.jpg', high: 'image18.jpg' },
+    { low: 'image19_low.jpg', high: 'image19.jpg' },
+    { low: 'image20_low.jpg', high: 'image20.jpg' },
+    { low: 'image21_low.jpg', high: 'image21.jpg' },
+    { low: 'image22_low.jpg', high: 'image22.jpg' },
+    { low: 'image23_low.jpg', high: 'image23.jpg' },
+    { low: 'image24_low.jpg', high: 'image24.jpg' },
+    { low: 'image25_low.jpg', high: 'image25.jpg' },
+    { low: 'image26_low.jpg', high: 'image26.jpg' },
+    { low: 'image27_low.jpg', high: 'image27.jpg' },
+    { low: 'image28_low.jpg', high: 'image28.jpg' },
+    { low: 'image29_low.jpg', high: 'image29.jpg' },
+    { low: 'image30_low.jpg', high: 'image30.jpg' },
+    { low: 'image32_low.jpg', high: 'image32.jpg' },
+    { low: 'image33_low.jpg', high: 'image33.jpg' },
+    { low: 'image34_low.jpg', high: 'image34.jpg' },
+    { low: 'image35_low.jpg', high: 'image35.jpg' },
+    { low: 'image36_low.jpg', high: 'image36.jpg' },
+    { low: 'image37_low.jpg', high: 'image37.jpg' },
+    { low: 'image38.jpg', high: 'image38.jpg' },
+    { low: 'image39_low.jpg', high: 'image39.jpg' },
+    { low: 'image40_low.jpg', high: 'image40.jpg' },
+    { low: 'image41_low.jpg', high: 'image41.jpg' },
+    { low: 'image42_low.jpg', high: 'image42.jpg' },
+    { low: 'image43_low.jpg', high: 'image43.jpg' },
+    { low: 'image44_low.jpg', high: 'image44.jpg' },
+    { low: 'image45.jpg', high: 'image45.jpg' },
+    { low: 'image46_low.jpg', high: 'image46.jpg' },
+    { low: 'image47_low.jpg', high: 'image47.jpg' },
+    { low: 'image48_low.jpg', high: 'image48.jpg' },
+    { low: 'image49_low.jpg', high: 'image49.jpg' },
+    { low: 'image50_low.jpg', high: 'image50.jpg' },
+    { low: 'image51_low.jpg', high: 'image51.jpg' },
+    { low: 'image52_low.jpg', high: 'image52.jpg' },
+    { low: 'image53_low.jpg', high: 'image53.jpg' },
+    { low: 'image54_low.jpg', high: 'image54.jpg' },
+    { low: 'image55_low.jpg', high: 'image55.jpg' },
+    { low: 'image56_low.jpg', high: 'image56.jpg' },
+    { low: 'image57_low.jpg', high: 'image57.jpg' },
+    { low: 'image58_low.jpg', high: 'image58.jpg' },
+    { low: 'image59_low.jpg', high: 'image59.jpg' },
+    { low: 'image63_low.jpg', high: 'image63.jpg' },
+    { low: 'image64_low.jpg', high: 'image64.jpg' },
+    { low: 'image65_low.jpg', high: 'image65.jpg' },
+    { low: 'image66_low.jpg', high: 'image66.jpg' },
+    { low: 'image67_low.jpg', high: 'image67.jpg' },
+    { low: 'image61.png', high: 'image61.png' },
+    { low: 'Image1_low.jpg', high: 'Image1.jpg' },
+    { low: 'Image2_low.jpg', high: 'Image2.jpg' },
+    { low: 'Image3_low.jpg', high: 'Image3.jpg' },
+    { low: 'Image4_low.jpg', high: 'Image4.jpg' },
+    { low: 'Image5_low.jpg', high: 'Image5.jpg' },
+    { low: 'Image6_low.jpg', high: 'Image6.jpg' },
+    { low: 'Image7_low.jpg', high: 'Image7.jpg' },
+    { low: 'Image8_low.jpg', high: 'Image8.jpg' },
+    { low: 'Image9_low.jpg', high: 'Image9.jpg' },
+    { low: 'Image10_low.jpg', high: 'Image10.jpg' },
+    { low: 'Image11_low.jpg', high: 'Image11.jpg' },
+    { low: '20240104_115337_low.jpg', high: '20240104_115337.jpg' },
+    { low: 'VideoCapture_20240513-112549_low.jpg', high: 'VideoCapture_20240513-112549.jpg' },
+    { low: '20240513121223_IMG_0617_low.JPG', high: '20240513121223_IMG_0617.JPG' },
+    { low: '20240511210930_IMG_0576_low.JPG', high: '20240511210930_IMG_0576.JPG' },
+    { low: 'IMG-20240410-WA0000_low.jpg', high: 'IMG-20240410-WA0000.jpg' },
+    { low: '20240513215448_IMG_0686_low.JPG', high: '20240513215448_IMG_0686.JPG' },
+    { low: '20240513210707_IMG_0667_low.JPG', high: '20240513210707_IMG_0667.JPG' },
+    { low: '20240518141116_IMG_0889_low.JPG', high: '20240518141116_IMG_0889.JPG' },
+    { low: '20240518141706_IMG_0899_low.JPG', high: '20240518141706_IMG_0899.JPG' },
+    { low: '20240518160851_IMG_0914_low.JPG', high: '20240518160851_IMG_0914.JPG' },
+    { low: 'PXL_20240516_155634095.MP_exported_333_low.jpg', high: 'PXL_20240516_155634095.MP_exported_333.jpg' },
+    { low: 'PXL_20240518_171454867_low.jpg', high: 'PXL_20240518_171454867.jpg' },
+    { low: 'PXL_20240506_001024010.MP_low.jpg', high: 'PXL_20240506_001024010.MP.jpg' },
+    { low: 'PXL_20240511_044632757_low.jpg', high: 'PXL_20240511_044632757.jpg' }
+];
 
       const zoomwallDiv = document.getElementById("zoomwall");
 
       for (let i = 0; i < imageList.length; i++) {
-        const imgElement = `<img loading="lazy" src="./Media/${imageList[i]}" />`;
+        const imgElement = `<img loading="lazy" src="./Media/${imageList[i].low}" data-high-res="./Media/${imageList[i].high}" />`;
         zoomwallDiv.insertAdjacentHTML("beforeend", imgElement);
       }
 
@@ -110,8 +170,26 @@
     window.onload = loadImages;
   </script>
 
+  <script>
+    document.addEventListener('click', function(event) {
+      if (event.target.tagName === 'IMG' && event.target.dataset.highRes) {
+        const lowResImg = event.target;
+        const highResSrc = lowResImg.dataset.highRes;
+        
+        // Create a new high-resolution image element
+        const highResImg = new Image();
+        highResImg.src = highResSrc;
+
+        // Replace the low-resolution image with the high-resolution image when it's loaded
+        highResImg.onload = function() {
+          lowResImg.src = highResSrc;
+        };
+      }
+    });
+  </script>
+
   <footer>
-    &copy; 2024 South America Travel
+    &copy; 2024 StuMacgregorPhotography
   </footer>
 </body>
 </html>
