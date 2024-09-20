@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bordeaux Gallery</title>
+  <link rel="stylesheet" type="text/css" href="./zoomwall.css" />
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      padding: 1em;
+      background-color: #333;
+      text-align: center;
+    }
+    footer {
+      padding: 1em;
+      background-color: #333;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="back-button">Back</a>
+    <h1>Bordeaux Gallery</h1>
+  </header>
+
+  <div id="zoomwall" class="zoomwall">
+    <!-- Images will be loaded here -->
+  </div>
+
+  <script type="module">
+    import * as zoomwall from "./zoomwall.js";
+
+    async function loadImages() {
+      const imageList = [
+    { low: 'bordeaux131_low.jpg', high: 'bordeaux131.jpg' },
+    { low: 'bordeaux129_low.jpg', high: 'bordeaux129.jpg' },
+    { low: 'bordeaux128_low.jpg', high: 'bordeaux128.jpg' },
+    { low: 'bordeaux127_low.jpg', high: 'bordeaux127.jpg' },
+    { low: 'bordeaux126_low.jpg', high: 'bordeaux126.jpg' },
+    { low: 'bordeaux130_low.jpg', high: 'bordeaux130.jpg' },
+    { low: 'bordeaux125_low.jpg', high: 'bordeaux125.jpg' },
+    { low: 'bordeaux124_low.jpg', high: 'bordeaux124.jpg' },
+    { low: 'bordeaux123_low.jpg', high: 'bordeaux123.jpg' },
+    { low: 'bordeaux122_low.jpg', high: 'bordeaux122.jpg' },
+    { low: 'bordeaux121_low.jpg', high: 'bordeaux121.jpg' },
+    { low: 'bordeaux120_low.jpg', high: 'bordeaux120.jpg' },
+    { low: 'bordeaux119_low.jpg', high: 'bordeaux119.jpg' },
+    { low: 'bordeaux118_low.jpg', high: 'bordeaux118.jpg' },
+    { low: 'bordeaux117_low.jpg', high: 'bordeaux117.jpg' },
+    { low: 'bordeaux116_low.jpg', high: 'bordeaux116.jpg' },
+    { low: 'bordeaux115_low.jpg', high: 'bordeaux115.jpg' },
+    { low: 'bordeaux114_low.jpg', high: 'bordeaux114.jpg' },
+    { low: 'bordeaux113_low.jpg', high: 'bordeaux113.jpg' },
+    { low: 'bordeaux112_low.jpg', high: 'bordeaux112.jpg' },
+    { low: 'bordeaux111_low.jpg', high: 'bordeaux111.jpg' },
+    { low: 'bordeaux110_low.jpg', high: 'bordeaux110.jpg' },
+    { low: 'bordeaux109_low.jpg', high: 'bordeaux109.jpg' },
+    { low: 'bordeaux108_low.jpg', high: 'bordeaux108.jpg' },
+    { low: 'bordeaux107_low.jpg', high: 'bordeaux107.jpg' },
+    { low: 'bordeaux106_low.jpg', high: 'bordeaux106.jpg' },
+    { low: 'bordeaux105_low.jpg', high: 'bordeaux105.jpg' },
+    { low: 'bordeaux104_low.jpg', high: 'bordeaux104.jpg' },
+    { low: 'bordeaux103_low.jpg', high: 'bordeaux103.jpg' },
+    { low: 'bordeaux102_low.jpg', high: 'bordeaux102.jpg' },
+    { low: 'bordeaux101_low.jpg', high: 'bordeaux101.jpg' },
+    { low: 'bordeaux100_low.jpg', high: 'bordeaux100.jpg' },
+    { low: 'bordeaux99_low.jpg', high: 'bordeaux99.jpg' },
+    { low: 'bordeaux98_low.jpg', high: 'bordeaux98.jpg' },
+    { low: 'bordeaux97_low.jpg', high: 'bordeaux97.jpg' },
+    { low: 'bordeaux96_low.jpg', high: 'bordeaux96.jpg' },
+    { low: 'bordeaux95_low.jpg', high: 'bordeaux95.jpg' },
+    { low: 'bordeaux94_low.jpg', high: 'bordeaux94.jpg' },
+    { low: 'bordeaux93_low.jpg', high: 'bordeaux93.jpg' },
+    { low: 'bordeaux92_low.jpg', high: 'bordeaux92.jpg' },
+    { low: 'bordeaux91_low.jpg', high: 'bordeaux91.jpg' },
+    { low: 'bordeaux90_low.jpg', high: 'bordeaux90.jpg' },
+    { low: 'bordeaux89_low.jpg', high: 'bordeaux89.jpg' },
+    { low: 'bordeaux88_low.jpg', high: 'bordeaux88.jpg' },
+    { low: 'bordeaux87_low.jpg', high: 'bordeaux87.jpg' },
+    { low: 'bordeaux86_low.jpg', high: 'bordeaux86.jpg' },
+    { low: 'bordeaux85_low.jpg', high: 'bordeaux85.jpg' },
+    { low: 'bordeaux84_low.jpg', high: 'bordeaux84.jpg' },
+    { low: 'bordeaux83_low.jpg', high: 'bordeaux83.jpg' },
+    { low: 'bordeaux82_low.jpg', high: 'bordeaux82.jpg' },
+    { low: 'bordeaux81_low.jpg', high: 'bordeaux81.jpg' },
+    { low: 'bordeaux80_low.jpg', high: 'bordeaux80.jpg' },
+    { low: 'bordeaux79_low.jpg', high: 'bordeaux79.jpg' },
+    { low: 'bordeaux78_low.jpg', high: 'bordeaux78.jpg' },
+    { low: 'bordeaux77_low.jpg', high: 'bordeaux77.jpg' },
+    { low: 'bordeaux76_low.jpg', high: 'bordeaux76.jpg' },
+    { low: 'bordeaux75_low.jpg', high: 'bordeaux75.jpg' },
+    { low: 'bordeaux74_low.jpg', high: 'bordeaux74.jpg' },
+    { low: 'bordeaux73_low.jpg', high: 'bordeaux73.jpg' },
+    { low: 'bordeaux72_low.jpg', high: 'bordeaux72.jpg' },
+    { low: 'bordeaux71_low.jpg', high: 'bordeaux71.jpg' },
+    { low: 'bordeaux70_low.jpg', high: 'bordeaux70.jpg' },
+    { low: 'bordeaux69_low.jpg', high: 'bordeaux69.jpg' },
+    { low: 'bordeaux68_low.jpg', high: 'bordeaux68.jpg' },
+    { low: 'bordeaux67_low.jpg', high: 'bordeaux67.jpg' },
+    { low: 'bordeaux66_low.jpg', high: 'bordeaux66.jpg' },
+    { low: 'bordeaux65_low.jpg', high: 'bordeaux65.jpg' },
+    { low: 'bordeaux64_low.jpg', high: 'bordeaux64.jpg' },
+    { low: 'bordeaux63_low.jpg', high: 'bordeaux63.jpg' },
+    { low: 'bordeaux62_low.jpg', high: 'bordeaux62.jpg' },
+    { low: 'bordeaux61_low.jpg', high: 'bordeaux61.jpg' },
+    { low: 'bordeaux60_low.jpg', high: 'bordeaux60.jpg' },
+    { low: 'bordeaux59_low.jpg', high: 'bordeaux59.jpg' },
+    { low: 'bordeaux58_low.jpg', high: 'bordeaux58.jpg' },
+    { low: 'bordeaux57_low.jpg', high: 'bordeaux57.jpg' },
+    { low: 'bordeaux56_low.jpg', high: 'bordeaux56.jpg' },
+    { low: 'bordeaux55_low.jpg', high: 'bordeaux55.jpg' },
+    { low: 'bordeaux54_low.jpg', high: 'bordeaux54.jpg' },
+    { low: 'bordeaux53_low.JPG', high: 'bordeaux53.JPG' },
+    { low: 'bordeaux52_low.jpg', high: 'bordeaux52.jpg' },
+    { low: 'bordeaux51_low.jpg', high: 'bordeaux51.jpg' },
+    { low: 'bordeaux50_low.jpg', high: 'bordeaux50.jpg' },
+    { low: 'bordeaux49_low.jpg', high: 'bordeaux49.jpg' },
+    { low: 'bordeaux48_low.jpg', high: 'bordeaux48.jpg' },
+    { low: 'bordeaux47_low.jpg', high: 'bordeaux47.jpg' },
+    { low: 'bordeaux46_low.jpg', high: 'bordeaux46.jpg' },
+    { low: 'bordeaux45_low.jpg', high: 'bordeaux45.jpg' },
+    { low: 'bordeaux44_low.JPG', high: 'bordeaux44.JPG' },
+    { low: 'bordeaux43_low.JPG', high: 'bordeaux43.JPG' },
+    { low: 'bordeaux42_low.jpg', high: 'bordeaux42.jpg' },
+    { low: 'bordeaux41_low.jpg', high: 'bordeaux41.jpg' },
+    { low: 'bordeaux40_low.jpg', high: 'bordeaux40.jpg' },
+    { low: 'bordeaux39_low.jpg', high: 'bordeaux39.jpg' },
+    { low: 'bordeaux38_low.jpg', high: 'bordeaux38.jpg' },
+    { low: 'bordeaux37_low.jpg', high: 'bordeaux37.jpg' },
+    { low: 'bordeaux36_low.jpg', high: 'bordeaux36.jpg' },
+    { low: 'bordeaux35_low.jpg', high: 'bordeaux35.jpg' },
+    { low: 'bordeaux34_low.jpg', high: 'bordeaux34.jpg' },
+    { low: 'bordeaux33_low.jpg', high: 'bordeaux33.jpg' },
+    { low: 'bordeaux32_low.jpg', high: 'bordeaux32.jpg' },
+    { low: 'bordeaux31_low.jpg', high: 'bordeaux31.jpg' },
+    { low: 'bordeaux30_low.jpg', high: 'bordeaux30.jpg' },
+    { low: 'bordeaux29_low.jpg', high: 'bordeaux29.jpg' },
+    { low: 'bordeaux28_low.jpg', high: 'bordeaux28.jpg' },
+    { low: 'bordeaux27_low.jpg', high: 'bordeaux27.jpg' },
+    { low: 'bordeaux26_low.jpg', high: 'bordeaux26.jpg' },
+    { low: 'bordeaux25_low.jpg', high: 'bordeaux25.jpg' },
+    { low: 'bordeaux24_low.jpg', high: 'bordeaux24.jpg' },
+    { low: 'bordeaux23_low.jpg', high: 'bordeaux23.jpg' },
+    { low: 'bordeaux22_low.jpg', high: 'bordeaux22.jpg' },
+    { low: 'bordeaux21_low.jpg', high: 'bordeaux21.jpg' },
+    { low: 'bordeaux20_low.jpg', high: 'bordeaux20.jpg' },
+    { low: 'bordeaux19_low.jpg', high: 'bordeaux19.jpg' },
+    { low: 'bordeaux18_low.jpg', high: 'bordeaux18.jpg' },
+    { low: 'bordeaux17_low.jpg', high: 'bordeaux17.jpg' },
+    { low: 'bordeaux16_low.jpg', high: 'bordeaux16.jpg' },
+    { low: 'bordeaux15_low.jpg', high: 'bordeaux15.jpg' },
+    { low: 'bordeaux14_low.jpg', high: 'bordeaux14.jpg' },
+    { low: 'bordeaux13_low.jpg', high: 'bordeaux13.jpg' },
+    { low: 'bordeaux12_low.jpg', high: 'bordeaux12.jpg' },
+    { low: 'bordeaux11_low.jpg', high: 'bordeaux11.jpg' },
+    { low: 'bordeaux10_low.jpg', high: 'bordeaux10.jpg' },
+    { low: 'bordeaux9_low.jpg', high: 'bordeaux9.jpg' },
+    { low: 'bordeaux8_low.jpg', high: 'bordeaux8.jpg' },
+    { low: 'bordeaux7_low.jpg', high: 'bordeaux7.jpg' },
+    { low: 'bordeaux5_low.jpg', high: 'bordeaux5.jpg' },
+    { low: 'bordeaux4_low.jpg', high: 'bordeaux4.jpg' },
+    { low: 'bordeaux3_low.jpg', high: 'bordeaux3.jpg' },
+    { low: 'bordeaux2_low.jpg', high: 'bordeaux2.jpg' },
+    { low: 'bordeaux1_low.jpg', high: 'bordeaux1.jpg' },
+    { low: 'bordeaux6_low.jpg', high: 'bordeaux6.jpg' }
+];
+
+
+      const zoomwallDiv = document.getElementById("zoomwall");
+
+      for (let i = 0; i < imageList.length; i++) {
+    const imgElement = `<img loading="lazy" src="./Media/Bordeaux/${imageList[i].low}" data-high-res="./Media/Bordeaux/${imageList[i].high}" />`;
+    zoomwallDiv.insertAdjacentHTML("beforeend", imgElement);
+}
+
+
+      setTimeout(() => {
+        zoomwall.create(document.getElementById("zoomwall"), true);
+      }, 3500);
+    }
+
+    window.onload = loadImages;
+  </script>
+
+  <footer>
+    &copy; 2024 Stu Macgregor Photography
+  </footer>
+</body>
+</html>

@@ -29,6 +29,26 @@ app.get('/getImages', (req, res) => {
     });
 });
 
+// Endpoint to get the list of image filenames from the 'Bordeaux' directory
+app.get('/getBordeauxImages', (req, res) => {
+    const bordeauxDirectory = path.join(__dirname, 'Media', 'Bordeaux');
+
+    fs.readdir(bordeauxDirectory, (err, files) => {
+        if (err) {
+            console.error('Error reading directory:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+
+        const imageFiles = files.filter(file => {
+            const ext = path.extname(file).toLowerCase();
+            return ['.jpg', '.jpeg', '.png', '.gif'].includes(ext);
+        }).map(file => `Bordeaux/${file}`); // Adjust path for the client
+
+        res.json(imageFiles);
+    });
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
